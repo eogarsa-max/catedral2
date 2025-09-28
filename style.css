@@ -1,0 +1,304 @@
+/* ==================== Corpo do site ==================== */
+body {
+  margin: 0;
+  font-family: 'Minecraft', 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #0a0a0a 0%, #001f4d 100%);
+  color: #fff;
+  padding-top: 80px; /* espaço para header fixo */
+  scroll-behavior: smooth;
+}
+
+/* ==================== Header fixo ==================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #0d1b2a, #001f4d);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+  z-index: 1000;
+  border-bottom: 3px solid #00ffff;
+  transition: 0.3s ease-in-out;
+}
+
+header:hover {
+  background: linear-gradient(90deg, #001f4d, #0d1b2a);
+}
+
+/* Logo header */
+.logo-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-logo {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.7);
+}
+
+header h1 {
+  color: #00ffff;
+  font-size: 2rem;
+  margin: 0;
+  text-shadow: 1px 1px 5px #000;
+}
+
+/* Navegação */
+nav {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s, color 0.3s;
+  white-space: nowrap;
+}
+
+nav a:hover {
+  color: #00ffff;
+  text-shadow: 1px 1px 6px #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+/* Botões específicos */
+.btn-discord { background: #5865F2; color: #fff; }
+.btn-discord:hover { background: #4752c4; }
+
+.btn-inicio { background: #00ffff; color: #000; }
+.btn-inicio:hover { background: #00bfff; }
+
+.btn-membros { background: #ffcc00; color: #000; }
+.btn-membros:hover { background: #e6b800; }
+
+.btn-conquistas { background: #00bfff; color: #000; }
+.btn-conquistas:hover { background: #009acd; }
+
+/* ==================== Hero ==================== */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom, #001f4d 0%, #000000 100%);
+  position: relative;
+}
+
+.hero-logo {
+  width: 280px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1.5rem;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+  transition: transform 0.3s;
+}
+
+.hero-logo:hover {
+  transform: scale(1.05);
+}
+
+.hero h2 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 10px #000;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 750px;
+  margin: 0 auto;
+  text-shadow: 1px 1px 6px #000;
+  line-height: 1.6;
+}
+
+/* ==================== Sobre ==================== */
+.sobre {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, #001f4d 0%, #000000 100%);
+}
+
+.sobre h2 {
+  font-size: 2.6rem;
+  margin-bottom: 2rem;
+  color: #00ffff;
+  text-shadow: 1px 1px 6px #000;
+}
+
+.sobre p {
+  font-size: 1.2rem;
+  max-width: 750px;
+  margin: 0 auto 3rem auto;
+  text-shadow: 1px 1px 5px #000;
+  line-height: 1.6;
+  color: #ccc;
+}
+
+/* Cards da seção Sobre */
+.sobre-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.sobre-card {
+  background: #0d1b2a;
+  border-radius: 15px;
+  padding: 25px;
+  width: 270px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sobre-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+}
+
+.sobre-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.sobre-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #00ffff;
+  text-shadow: 1px 1px 6px #000;
+}
+
+.sobre-card p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+/* ==================== Conquistas ==================== */
+.grid-conquistas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 4rem 2rem;
+  background: linear-gradient(to right, #000000, #001f4d);
+}
+
+.conquista-card {
+  background: #0d1b2a;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  border: 2px solid #00ffff;
+  font-family: 'Minecraft', monospace;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.conquista-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+}
+
+.conquista-card img {
+  max-width: 80%;
+  margin-bottom: 15px;
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+}
+
+/* ==================== Modal ==================== */
+.modal {
+  display: none;
+  position: fixed;
+  top:0; left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: #0d1b2a;
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+.modal-content img {
+  max-width: 80%;
+  margin-bottom: 20px;
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+}
+
+.modal-content h3 {
+  color: #00ffff;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 4px #000;
+}
+
+.modal-content p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+/* Botão fechar modal */
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #00ffff;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.modal-close:hover {
+  color: #fff;
+}
+
+/* ==================== Footer ==================== */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #0d1b2a;
+  color: #ccc;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 5px rgba(0,0,0,0.5);
+}
+
+/* ==================== Responsividade ==================== */
+@media (max-width: 900px) {
+  nav a {
+    width: 100%;
+    justify-content: center;
+  }
+  .sobre-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
