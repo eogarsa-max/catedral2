@@ -302,3 +302,95 @@ footer {
     align-items: center;
   }
 }
+/* ==================== Seção de Cargo ==================== */
+.cargo-section {
+  margin: 4rem 2rem;
+}
+
+.cargo-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 10px 0;
+  margin-bottom: 1.5rem;
+  border-radius: 25px;
+  background: linear-gradient(90deg, #00f0ff, #00bfff);
+  color: #000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  text-shadow: 1px 1px 5px #00ffff;
+  width: 220px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.cargo-title:hover {
+  transform: scale(1.05);
+  background: linear-gradient(90deg, #00bfff, #00f0ff);
+}
+
+/* Grid de membros por cargo */
+.cargo-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 3rem;
+}
+
+/* Card de cada membro */
+.membro-card {
+  background: #0d1b2a;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  border: 2px solid #00ffff;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  width: 150px;
+  padding: 20px 10px 15px 10px;
+}
+
+/* Imagem do membro */
+.membro-card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #00ffff;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+/* Nome do membro */
+.membro-nome {
+  font-weight: bold;
+  color: #00ffff;
+  margin-bottom: 5px;
+  font-size: 1rem;
+  text-shadow: 1px 1px 3px #000;
+}
+
+/* Cargo como badge redonda */
+.membro-cargo {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #00f0ff, #00bfff);
+  color: #000;
+  font-weight: bold;
+  font-size: 0.85rem;
+  margin-top: 5px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+}
+
+/* Hover no card */
+.membro-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.8);
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .cargo-container { justify-content: center; }
+  .cargo-title { width: 80%; font-size: 1.5rem; }
+}
