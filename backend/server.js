@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // usa a porta do Render ou 3000 localmente
 
 // Middlewares
 app.use(cors()); // permite que qualquer frontend envie requisições
@@ -62,5 +62,5 @@ app.post("/backend/pendentes", (req, res) => {
 
 // Inicia servidor
 app.listen(PORT, () => {
-  console.log(`✅ Servidor rodando em http://localhost:${PORT}`);
+  console.log(`✅ Servidor rodando na porta ${PORT}`);
 });
