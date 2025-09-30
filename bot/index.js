@@ -7,9 +7,10 @@ const {
 } = require('discord.js');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config(); // Carregar variáveis do .env
 
 // Para node-fetch funcionar no Node 18+ ESM
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 const client = new Client({
   intents: [
@@ -71,7 +72,7 @@ client.once('ready', async () => {
   await enviarPendentes();
 
   // Monitora mudanças no pendentes.json
-  fs.watchFile(pendentesPath, async (curr, prev) => {
+  fs.watchFile(pendentesPath, async () => {
     console.log('📄 Detectado alteração em pendentes.json, enviando novos pendentes...');
     await enviarPendentes();
   });
@@ -81,10 +82,10 @@ client.once('ready', async () => {
 client.on('interactionCreate', async interaction => {
   if (!interaction.isButton()) return;
 
-  const [acao, nick, discordId] = interaction.customId.split('_');
+  const [acao, nome, discordId] = interaction.customId.split('_');
 
   let pendentes = JSON.parse(fs.readFileSync(pendentesPath));
-  const form = pendentes.find(p => p.nick === nick);
+  const form = pendentes.find(p => p.nome === nome);
 
   if (!form) {
     await interaction.reply({ content: '❌ Formulário não encontrado ou já processado.', ephemeral: true });
@@ -97,9 +98,9 @@ client.on('interactionCreate', async interaction => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          nick: form.nick,
+          nick: form.nome,
           cargo: 'MEMBRO',
-          avatar: `https://minotar.net/avatar/${form.nick}/100.png`
+          avatar: `https://minotar.net/avatar/${form.nome}/100.png`
         })
       });
     } catch (err) {
@@ -111,7 +112,7 @@ client.on('interactionCreate', async interaction => {
       const membro = await guild.members.fetch(discordId).catch(() => null);
       if (membro) await membro.roles.add(cargoId);
 
-      await interaction.update({ content: `✅ Formulário de **${form.nick}** aceito! Cargo adicionado.`, components: [] });
+      await interaction.update({ content: `✅ Formulário de **${form.nome}** aceito! Cargo adicionado.`, components: [] });
       setTimeout(() => interaction.message.delete().catch(() => {}), 3000);
     } catch (err) {
       console.error("Erro ao dar cargo ou atualizar interação:", err);
@@ -119,7 +120,7 @@ client.on('interactionCreate', async interaction => {
 
   } else if (acao === 'negar') {
     try {
-      await interaction.update({ content: `❌ Formulário de **${form.nick}** negado.`, components: [] });
+      await interaction.update({ content: `❌ Formulário de **${form.nome}** negado.`, components: [] });
       setTimeout(() => interaction.message.delete().catch(() => {}), 3000);
     } catch (err) {
       console.error("Erro ao atualizar interação:", err);
@@ -127,9 +128,9 @@ client.on('interactionCreate', async interaction => {
   }
 
   // Remove do pendentes.json
-  pendentes = pendentes.filter(p => p.nick !== nick);
+  pendentes = pendentes.filter(p => p.nome !== nome);
   fs.writeFileSync(pendentesPath, JSON.stringify(pendentes, null, 2));
 });
 
-// Login do bot
-client.login(fs.readFileSync('token.txt', 'utf-8').trim());
+// Login do bot com variável de ambiente
+client.login(process.env.TOKEN);

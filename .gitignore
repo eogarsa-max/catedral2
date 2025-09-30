@@ -1,4 +1,26 @@
+# Dependências
 node_modules/
-bot/token.txt
-*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+dist/
+build/
+
+# Sistema
 .DS_Store
+Thumbs.db
+
+# Variáveis de ambiente
+.env
+
+# Logs
+logs
+*.log
+
+# Cache
+.cache/
+# arquivos locais
+pendentes.json
+token.txt
