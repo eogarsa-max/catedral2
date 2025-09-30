@@ -5,17 +5,17 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000; // usa a porta do Render ou 3000 localmente
+const PORT = process.env.PORT || 10000; // Render define a porta automaticamente
 
 // Middlewares
-app.use(cors()); // permite que qualquer frontend envie requisições
+app.use(cors());
 app.use(bodyParser.json());
 
 // Caminho do arquivo pendentes.json
 const pendentesPath = path.join(__dirname, "pendentes.json");
 
-// Responder preflight OPTIONS (necessário para POST com JSON)
-app.options("/backend/pendentes", (req, res) => res.sendStatus(200));
+// Servir arquivos estáticos da pasta public
+app.use(express.static(path.join(__dirname, "../public"))); // ajusta para a pasta correta
 
 // GET pendentes
 app.get("/backend/pendentes", (req, res) => {
@@ -33,8 +33,6 @@ app.get("/backend/pendentes", (req, res) => {
 // POST pendente
 app.post("/backend/pendentes", (req, res) => {
   const novo = req.body;
-
-  // Validação simples
   if (!novo || !novo.nome || !novo.idade) {
     return res.status(400).json({ message: "Pendente inválido" });
   }
@@ -58,6 +56,11 @@ app.post("/backend/pendentes", (req, res) => {
   }
 
   res.status(201).json({ message: "Pendente adicionado!", data: novo });
+});
+
+// Página inicial (apenas para garantir)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 // Inicia servidor
