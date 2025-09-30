@@ -5,6 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clan CTD - Início</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Botão do formulário */
+    .btn-entrar {
+      display: inline-block;
+      background: linear-gradient(90deg, #00ffff, #00bfff);
+      color: #000;
+      font-weight: bold;
+      padding: 12px 22px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-entrar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 255, 255, 0.35);
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
@@ -26,32 +44,32 @@
     <img src="imagens/logo.png" alt="Clan CTD Logo" class="hero-logo">
     <h2>Bem-vindo ao Clan CTD</h2>
     <p>O melhor clan de Minecraft focado em farm, rankup e eventos! Junte-se à nossa comunidade e conquiste tudo com a gente!</p>
+    <a href="formulario.html" class="btn-entrar">🚀 Entrar para o Clan CTD</a>
   </section>
 
   <!-- Sobre -->
-<!-- Sobre -->
-<section class="sobre">
-  <h2>Sobre o Clan</h2>
-  <p>O Clan CTD é formado por jogadores dedicados, unidos por diversão e evolução no mundo de Minecraft.</p>
-  
-  <div class="sobre-cards">
-    <div class="sobre-card">
-      <div class="sobre-icon">💎</div>
-      <h3>Foco em Farm e Evolução</h3>
-      <p>Progresso constante e recompensas para todos os membros, garantindo crescimento rápido e eficiente.</p>
+  <section class="sobre">
+    <h2>Sobre o Clan</h2>
+    <p>O Clan CTD é formado por jogadores dedicados, unidos por diversão e evolução no mundo de Minecraft.</p>
+    
+    <div class="sobre-cards">
+      <div class="sobre-card">
+        <div class="sobre-icon">💎</div>
+        <h3>Foco em Farm e Evolução</h3>
+        <p>Progresso constante e recompensas para todos os membros, garantindo crescimento rápido e eficiente.</p>
+      </div>
+      <div class="sobre-card">
+        <div class="sobre-icon">🏆</div>
+        <h3>Eventos Semanais</h3>
+        <p>Participe de torneios e atividades exclusivas, sempre com prêmios e reconhecimento para os melhores.</p>
+      </div>
+      <div class="sobre-card">
+        <div class="sobre-icon">🤝</div>
+        <h3>Comunidade Ativa</h3>
+        <p>Interaja com outros membros no Discord, faça amizades e fortaleça a nossa comunidade.</p>
+      </div>
     </div>
-    <div class="sobre-card">
-      <div class="sobre-icon">🏆</div>
-      <h3>Eventos Semanais</h3>
-      <p>Participe de torneios e atividades exclusivas, sempre com prêmios e reconhecimento para os melhores.</p>
-    </div>
-    <div class="sobre-card">
-      <div class="sobre-icon">🤝</div>
-      <h3>Comunidade Ativa</h3>
-      <p>Interaja com outros membros no Discord, faça amizades e fortaleça a nossa comunidade.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- Modal de conquista -->
   <div id="conquista-modal" class="modal">

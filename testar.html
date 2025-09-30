@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste Backend</title>
+</head>
+<body>
+  <button onclick="enviar()">Enviar teste</button>
+
+  <script>
+    async function enviar() {
+      const response = await fetch("http://localhost:3000/formulario", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nick: "teste",
+          idade: 15,
+          discord: "123",
+          motivo: "teste"
+        })
+      });
+
+      const result = await response.json();
+      console.log(result);
+      alert("Resposta do backend: " + JSON.stringify(result));
+    }
+  </script>
+</body>
+</html>

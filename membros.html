@@ -5,45 +5,200 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Membros - Clan CTD</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #001f4d;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo-header img {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 12px;
+      font-weight: bold;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 2rem;
+    }
+    .hero-logo {
+      width: 100px;
+      height: 100px;
+    }
+
+    /* Grid de membros */
+    #lista-membros {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      padding: 2rem;
+    }
+
+    .cargo-group {
+      text-align: center;
+    }
+
+    .cargo-faixa {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 1.4rem;
+      color: #fff;
+      margin-bottom: 16px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.5);
+    }
+    .LÍDER { background: #ff0000; }
+    .CAPITÃO { background: #00bfff; }
+    .MEMBRO { background: #00ffcc; }
+
+    .membros-lista {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .membro-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #0d1b2a;
+      padding: 12px;
+      border-radius: 12px;
+      min-width: 100px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .membro-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,255,255,0.3);
+    }
+    .membro-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 8px;
+    }
+    .membro-item span {
+      font-weight: bold;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #001f4d;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
+
 <header>
   <div class="logo-header">
-    <img src="imagens/logo.png" alt="Clan CTD Logo" class="header-logo">
+    <img src="imagens/logo.png" alt="Clan CTD Logo">
     <h1>Clan CTD</h1>
   </div>
-  
   <nav>
-    <div class="nav-links" id="nav-links">
       <a class="btn-inicio" href="index.html">🏠 Início</a>
       <a class="btn-membros" href="membros.html">👥 Membros</a>
       <a class="btn-conquistas" href="conquistas.html">🏆 Conquistas</a>
-      <a class="btn-discord" href="https://discord.gg/z94rsjrCEA" target="_blank">💬 Discord</a>
-    </div>
-    <button class="nav-toggle" id="nav-toggle">☰</button>
+      <a class="btn-discord" href="https://discord.gg/z94rsjrCEA" target="_blank">💬 Entrar no Discord</a>
   </nav>
 </header>
 
+<section class="hero">
+  <img src="imagens/logo.png" alt="Clan CTD Logo" class="hero-logo">
+  <h2>Nossos Membros</h2>
+  <p>Veja todos os jogadores do Clan CTD organizados por cargo.</p>
+</section>
 
-  <!-- Hero -->
-  <section class="hero">
-    <img src="imagens/logo.png" alt="Clan CTD Logo" class="hero-logo">
-    <h2>Nossos Membros</h2>
-    <p>Veja todos os jogadores do Clan CTD organizados por cargo.</p>
-  </section>
+<section id="lista-membros">
+  <!-- JS organiza membros por cargo -->
+</section>
 
-  <!-- Lista de membros -->
-  <section id="lista-membros" class="grid-membros">
-    <!-- JS organiza membros por cargo -->
-  </section>
+<footer>
+  <p>&copy; 2025 Clan CTD - Todos os direitos reservados</p>
+</footer>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Clan CTD - Todos os direitos reservados</p>
-  </footer>
+<script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+<script>
+  async function carregarMembros() {
+    try {
+      const response = await fetch('jogadores.yml'); 
+      const yamlText = await response.text();
+      let membros = jsyaml.load(yamlText);
 
-  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
-  <script src="membros.js"></script>
+      // Ordem de cargos do topo para baixo
+      const ordemCargos = ['LÍDER', 'CAPITÃO', 'MEMBRO'];
+      membros.sort((a,b) => ordemCargos.indexOf(a.cargo) - ordemCargos.indexOf(b.cargo));
+
+      // Agrupa membros por cargo
+      const grupoPorCargo = {};
+      ordemCargos.forEach(cargo => grupoPorCargo[cargo] = []);
+      membros.forEach(m => grupoPorCargo[m.cargo].push(m));
+
+      const container = document.getElementById('lista-membros');
+      container.innerHTML = '';
+
+      ordemCargos.forEach(cargo => {
+        if (grupoPorCargo[cargo].length === 0) return;
+
+        const groupDiv = document.createElement('div');
+        groupDiv.className = 'cargo-group';
+
+        const faixa = document.createElement('div');
+        faixa.className = `cargo-faixa ${cargo}`;
+        faixa.textContent = cargo;
+        groupDiv.appendChild(faixa);
+
+        const lista = document.createElement('div');
+        lista.className = 'membros-lista';
+
+        grupoPorCargo[cargo].forEach(membro => {
+          const item = document.createElement('div');
+          item.className = 'membro-item';
+          item.innerHTML = `
+            <img src="${membro.avatar}" alt="${membro.nick}">
+            <span>${membro.nick}</span>
+          `;
+          lista.appendChild(item);
+        });
+
+        groupDiv.appendChild(lista);
+        container.appendChild(groupDiv);
+      });
+
+    } catch (err) {
+      console.error('Erro ao carregar membros:', err);
+      const container = document.getElementById('lista-membros');
+      container.innerHTML = '<p style="color:red;">Não foi possível carregar os membros.</p>';
+    }
+  }
+
+  carregarMembros();
+</script>
+
 </body>
 </html>

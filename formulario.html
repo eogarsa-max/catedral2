@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Entrar para o Clan CTD</title>
+
+  <style>
+    /* reset / box sizing */
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Minecraft', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0a0a0a 0%, #001f4d 100%);
+      color: #fff;
+      padding-top: 80px;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #0d1b2a, #001f4d);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.7);
+      z-index: 1000;
+      border-bottom: 3px solid #00ffff;
+      transition: 0.3s ease-in-out;
+    }
+    header h1 {
+      color: #00ffff;
+      font-size: 1.25rem;
+      margin: 0;
+      text-shadow: 1px 1px 5px #000;
+    }
+
+    nav { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    nav a {
+      padding:10px 25px;
+      border-radius:10px;
+      font-weight:bold;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      box-shadow:0 3px 10px rgba(0,0,0,0.3);
+      transition: transform .3s, box-shadow .3s, background .3s, color .3s;
+      white-space:nowrap;
+      color:#fff;
+    }
+    nav a:hover {
+      color:#00ffff;
+      text-shadow:1px 1px 6px #000;
+      transform:translateY(-2px);
+      box-shadow:0 6px 15px rgba(0,0,0,0.5);
+    }
+
+    /* ==================== Formulário ==================== */
+    .formulario {
+      background: linear-gradient(135deg, #0d1b2a, #001f4d);
+      padding: 50px 30px;
+      border-radius: 20px;
+      max-width: 650px;
+      margin: 4rem auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+      color: #fff;
+      font-family: 'Minecraft', monospace;
+      text-align: center;
+    }
+
+    .formulario h2 {
+      color: #00ffff;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 6px #000;
+      font-size: 2rem;
+    }
+
+    .form-card {
+      background: #0d1b2a;
+      padding: 12px 15px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      border: 2px solid #00ffff;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+      text-align: left;
+    }
+
+    .form-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 12px 25px rgba(0,255,255,0.06);
+      border-color: #00bfff;
+    }
+
+    .form-card label {
+      display: block;
+      margin-bottom: 8px;
+      color: #cfefff;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .form-card input,
+    .form-card textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 2px solid #00ffff;
+      background: #0a0a0a;
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);
+      transition: border .25s, box-shadow .25s, transform .15s;
+      resize: vertical;
+    }
+
+    .form-card input:focus,
+    .form-card textarea:focus {
+      border-color: #00bfff;
+      box-shadow: 0 0 12px rgba(0,191,255,0.15);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .btn-enviar {
+      background: linear-gradient(90deg, #00ffff, #00bfff);
+      color: #000;
+      font-weight: bold;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(0,255,255,0.25);
+      transition: transform .15s, box-shadow .25s, background .25s;
+      display: inline-block;
+      margin-top: 6px;
+    }
+    .btn-enviar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,255,255,0.35);
+    }
+
+    @media (max-width: 700px) {
+      .formulario { padding: 30px 18px; margin: 3rem 16px; }
+      .formulario h2 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <img src="imagens/logo.png" alt="logo" style="width:48px;height:48px;border-radius:8px;box-shadow:0 3px 8px rgba(0,0,0,.6)" />
+      <h1>Clan CTD</h1>
+    </div>
+    <nav>
+      <a href="#">Início</a>
+      <a href="#">Membros</a>
+      <a href="#">Discord</a>
+    </nav>
+  </header>
+
+  <section class="formulario" aria-labelledby="titulo-form">
+    <h2 id="titulo-form">Entrar para o Clan CTD</h2>
+
+    <form id="form-entrada">
+      <div class="form-card">
+        <label for="nome">Nome do Jogador</label>
+        <input id="nome" name="nome" type="text" placeholder="Seu nickname" required />
+      </div>
+
+      <div class="form-card">
+        <label for="idade">Idade</label>
+        <input id="idade" name="idade" type="number" placeholder="Sua idade" required min="8" />
+      </div>
+
+      <div class="form-card">
+        <label for="discord">ID do Discord</label>
+        <input id="discord" name="discord" type="text" placeholder="Seu Discord ID" />
+      </div>
+
+      <div class="form-card">
+        <label for="motivo">Motivo para entrar</label>
+        <textarea id="motivo" name="motivo" rows="4" placeholder="Por que você quer entrar?"></textarea>
+      </div>
+
+      <button class="btn-enviar" type="submit">Enviar</button>
+    </form>
+  </section>
+
+<script>
+  // Formulário envia JSON para backend Node.js
+  document.getElementById("form-entrada").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      nome: form.nome.value,
+      idade: form.idade.value,
+      discord: form.discord.value,
+      motivo: form.motivo.value
+    };
+
+    try {
+      const res = await fetch("http://localhost:3000/backend/pendentes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        alert("✅ Formulário enviado com sucesso!");
+        form.reset();
+      } else {
+        alert("❌ Erro ao enviar (código " + res.status + ")");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("❌ Erro de conexão com o servidor.");
+    }
+  });
+</script>
+
+</body>
+</html>
