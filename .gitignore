@@ -1,0 +1,4 @@
+node_modules/
+bot/token.txt
+*.log
+.DS_Store
