@@ -24,3 +24,5 @@ logs
 # arquivos locais
 pendentes.json
 token.txt
+# Token do bot
+bot/token.txt
